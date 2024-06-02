@@ -2,6 +2,7 @@
     import {base} from '$app/paths'
     import { darkTheme } from '$lib/index'
     import Tag from '$lib/tag.svelte';
+    import ColorPicker from 'svelte-awesome-color-picker';
 
     let title = 'Ian\'s Resume';
     let linkedin = base + "/In-Blue-21.png"
@@ -79,20 +80,6 @@
   ];
 
   let skillsView = skills.slice(0, 10);
-
-  let colors=[
-    //'#f0868a', // light red
-    // '#87a1ed', //light blue 
-    // '#9fed87', // light green
-    // '#f0e665', // light yellow
-    'bg-primary',
-    'bg-secondary',
-    'bg-tertiary'
-  ];
-
-  let getColor = () => {
-    return colors[Math.floor(Math.random()*colors.length)];
- }
 
     let projects = [
     {
@@ -172,14 +159,66 @@
   ];
 
   let referenceView = references.slice(0, 3);
-    
+  
+  var r = document.querySelector(':root');
+  var rs = getComputedStyle(r || new Element());
+  let primary = rs.getPropertyValue('--primary');
+  let secondary = rs.getPropertyValue('--secondary');
+  let tertiary = rs.getPropertyValue('--tertiary');
+  
+  /**
+	 * @param {'--primary'|'--secondary'|'--tertiary'} key
+	 * @param {string | undefined} value
+	 */
+  function cssSet(key, value) {
+    // Set the value of variable --blue to another value (in this case "lightblue")
+    let r = document.querySelector(':root');
+    console.log(r, key, value)
+    r?.style.setProperty(key, value);
+    console.log(getComputedStyle(r).getPropertyValue(key))
+  }
 </script>
 
 <div>
+  <style>
+    .dark {
+      --cp-bg-color: #333;
+      --cp-border-color: white;
+      --cp-text-color: white;
+      --cp-input-color: #555;
+      --cp-button-hover-color: #777;
+    }</style>
     <div class="container max-w-screen-2xl mx-auto">
       <div id="header" class="row pt-7 mx-5">
         <div class="flex">
           <h1 class="text-6xl font-semibold grow">Ian Beal</h1>
+          <div class="my-auto mx-2 rounded">
+            <ColorPicker 
+              hex={primary}
+              label=''
+              on:input={(event) => {
+                cssSet("--primary", event.detail.hex);
+              }}
+            />
+          </div>
+          <div class="my-auto mx-2 rounded">
+            <ColorPicker 
+            hex={secondary}
+            label=''
+            on:input={(event) => {
+              cssSet("--secondary", event.detail.hex);
+            }}
+            />
+          </div>
+          <div class="my-auto mx-2 rounded">
+            <ColorPicker 
+            hex={tertiary}
+            label=''
+            on:input={(event) => {
+              cssSet("--tertiary", event.detail.hex);
+            }}
+            />
+          </div>
           { #if !dark }
           <button id="dark-toggle" type="button" on:click={darkMode}>
             <svg id="theme-toggle-dark-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>

@@ -33,9 +33,9 @@ export default {
       'gray': mycolors.gray,
       'gray-light': mycolors['gray-light'],
       'white': colors.white,
-      'primary': mycolors.primary, //light blue
-      'secondary': mycolors.secondary, // light green
-      'tertiary': mycolors.tertiary, // light yellow
+      'primary': "var(--primary)", //light blue
+      'secondary': "var(--secondary)", // light green
+      'tertiary': "var(--tertiary)", // light yellow
     },
   },
   plugins: [],
