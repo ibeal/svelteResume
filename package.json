@@ -40,6 +40,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"flowbite-svelte": "^0.46.1"
+		"flowbite-svelte": "^0.46.1",
+		"svelte-adapter-azure-swa": "^0.20.0"
 	}
 }
