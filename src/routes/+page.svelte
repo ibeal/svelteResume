@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import {base} from '$app/paths'
     import { darkTheme } from '$lib/index'
     import Tag from '$lib/tag.svelte';
@@ -172,8 +174,9 @@
 	 */
   function cssSet(key, value) {
     // Set the value of variable --blue to another value (in this case "lightblue")
-    let r = document.querySelector(':root');
+    let r = document.querySelector(':root') || document.documentElement;
     console.log(r, key, value)
+    // @ts-ignore
     r?.style.setProperty(key, value);
     console.log(getComputedStyle(r).getPropertyValue(key))
   }
@@ -192,7 +195,7 @@
       <div id="header" class="row pt-7 mx-5">
         <div class="flex">
           <h1 class="text-6xl font-semibold grow">Ian Beal</h1>
-          <div class="my-auto mx-2 rounded">
+          <div class="my-auto mx-1 rounded">
             <ColorPicker 
               hex={primary}
               label=''
@@ -201,7 +204,7 @@
               }}
             />
           </div>
-          <div class="my-auto mx-2 rounded">
+          <div class="my-auto mx-1 rounded">
             <ColorPicker 
             hex={secondary}
             label=''
@@ -210,7 +213,7 @@
             }}
             />
           </div>
-          <div class="my-auto mx-2 rounded">
+          <div class="my-auto mx-1 mr-3 rounded">
             <ColorPicker 
             hex={tertiary}
             label=''
