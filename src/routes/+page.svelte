@@ -12,37 +12,36 @@
 		isDarkMode = val;
 	});
 
-  /**
-   * Sets the app to light mode
-   */
+	/**
+	 * Sets the app to light mode
+	 */
 	let setLightMode = () => {
 		darkTheme.set(false);
 		localStorage.setItem('dark-mode', 'light');
 		document.documentElement.classList.remove('dark');
 	};
-  /**
-   * Sets the app to dark mode
-   */
+	/**
+	 * Sets the app to dark mode
+	 */
 	let setDarkMode = () => {
 		darkTheme.set(true);
 		localStorage.setItem('dark-mode', 'dark');
 		document.documentElement.classList.add('dark');
 	};
 
-  // determine starting dark/light mode
+	// determine starting dark/light mode
 	if (
-    // previously saved dark mode
+		// previously saved dark mode
 		localStorage.getItem('dark-mode') === 'dark' ||
-    // not previously set dark mode and OS is set to dark mode
-		(!('dark-mode' in localStorage) && 
-      window.matchMedia('(prefers-color-scheme: dark)').matches)
+		// not previously set dark mode and OS is set to dark mode
+		(!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 	) {
 		setDarkMode();
 	} else {
 		setLightMode();
 	}
 
-  // setup views of the data
+	// setup views of the data
 	let bio = data.bio;
 	let experienceView = data.experience
 		.sort((a, b) => b.start.valueOf() - a.start.valueOf())
@@ -53,7 +52,7 @@
 	let degreeView = data.degrees.slice(0, 2);
 	let referenceView = data.references.slice(0, 3);
 
-  // get initial values of the theme colors
+	// get initial values of the theme colors
 	let rootElement = document.querySelector(':root') || document.documentElement;
 	let rootElementStyles = getComputedStyle(rootElement);
 	let primary = rootElementStyles.getPropertyValue('--primary');
@@ -61,7 +60,7 @@
 	let tertiary = rootElementStyles.getPropertyValue('--tertiary');
 
 	/**
-   * Set the given css key to the given value at the root level
+	 * Set the given css key to the given value at the root level
 	 * @param {'--primary'|'--secondary'|'--tertiary'} key
 	 * @param {string | undefined} value
 	 */
