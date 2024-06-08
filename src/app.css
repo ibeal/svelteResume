@@ -7,3 +7,11 @@
     --secondary: #9fed87;
     --tertiary: #f0e665;
 }
+
+.tooltip {
+    @apply invisible absolute;
+  }
+  
+  .has-tooltip:hover .tooltip {
+    @apply visible z-50;
+  }
