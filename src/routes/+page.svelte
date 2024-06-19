@@ -24,9 +24,10 @@
 	/**
 	 * Sets the app to light mode, but not in local storage
 	 */
-	let setPrintMode = () => {
-		// darkTheme.set(false);
+	let print = () => {
+		if (!isDarkMode) return window.print();
 		// document.documentElement.classList.remove('dark');
+		window.print()
 	}
 	/**
 	 * Sets the app to dark mode
@@ -123,7 +124,7 @@
 		<div id="header" class="row pt-7 mx-5 print:mx-8">
 			<div class="flex">
 				<h1 class="text-6xl font-semibold grow print:text-3xl">Ian Beal</h1>
-				<button id="printButton" type="button" on:click={() => { setPrintMode(); window.print()}} class="has-tooltip">
+				<button id="printButton" type="button" on:click={print} class="has-tooltip">
 					<span class="bg-primary shadow-lg z-10 absolute visible px-2 py-1 tooltip mt-8 -ms-40 rounded-lg print:hidden text-gray-dark">
 						For best results, use minimal margins when printing</span>
 					<svg
