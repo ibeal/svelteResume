@@ -20,6 +20,14 @@
 		localStorage.setItem('dark-mode', 'light');
 		document.documentElement.classList.remove('dark');
 	};
+
+	/**
+	 * Sets the app to light mode, but not in local storage
+	 */
+	let setPrintMode = () => {
+		// darkTheme.set(false);
+		// document.documentElement.classList.remove('dark');
+	}
 	/**
 	 * Sets the app to dark mode
 	 */
@@ -68,6 +76,37 @@
 		// @ts-ignore
 		rootElement?.style.setProperty(key, value);
 	}
+
+	/**
+	 * Object representing month names mapped to their respective numbers.
+	 * @type {Object.<number, string>}
+	 */
+	const months = {
+		1: 'Jan.',
+		2: 'Feb.',
+		3: 'Mar.',
+		4: 'Apr.',
+		5: 'May',
+		6: 'Jun.',
+		7: 'Jul.',
+		8: 'Aug.',
+		9: 'Sep.',
+		10: 'Oct.',
+		11: 'Nov.',
+		12: 'Dec.'
+	};
+	/**
+	 * @param {Date|Undefined} date
+	 * @param {string} format
+	 */
+	function formatDate(date, format='localDate') {
+		if (date == undefined) return date
+		switch(format) {
+			case 'localDate': return date.toLocaleDateString();
+			case 'M/YYYY': return `${date.getMonth()}/${date.getFullYear()}`;
+			case 'mmm YYYY': return `${months[date.getMonth()]} ${date.getFullYear()}`
+		}
+	}
 </script>
 
 <div>
@@ -80,11 +119,11 @@
 			--cp-button-hover-color: #777;
 		}
 	</style>
-	<div class="container max-w-screen-2xl mx-auto print:text-xs print:mx-8 print:max-w-screen-lg">
-		<div id="header" class="row pt-7 mx-5">
+	<div class="container max-w-screen-lg mx-auto print:text-2xs print:mx-0">
+		<div id="header" class="row pt-7 mx-5 print:mx-8">
 			<div class="flex">
-				<h1 class="text-6xl font-semibold grow print:text-4xl">Ian Beal</h1>
-				<button id="printButton" type="button" on:click={() => window.print()} class="has-tooltip">
+				<h1 class="text-6xl font-semibold grow print:text-3xl">Ian Beal</h1>
+				<button id="printButton" type="button" on:click={() => { setPrintMode(); window.print()}} class="has-tooltip">
 					<span class="bg-primary shadow-lg z-10 absolute visible px-2 py-1 tooltip mt-8 -ms-40 rounded-lg print:hidden text-gray-dark">
 						For best results, use minimal margins when printing</span>
 					<svg
@@ -154,7 +193,7 @@
 					</button>
 				{/if}
 			</div>
-			<h3 class="text-3xl my-2 font-semibold print:text-xl">Software Engineer</h3>
+			<h3 class="text-3xl my-2 font-semibold print:text-lg">Software Engineer</h3>
 			<p>
 				<a href="mailto:ian@ianbeal.dev?subject=Saw%20Your%20Resume%20Online!"> ian@ianbeal.dev</a>
 				<span> | </span>
@@ -164,27 +203,32 @@
 			</p>
 			<hr class="my-4 border-gray" />
 		</div>
-		<div class="container flex flex-wrap">
+		<div class="container flex flex-wrap print:mx-auto">
 			<div
 				id="profile"
-				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 basis-1/3 grow min-w-48 print:w-max"
+				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 print:border basis-full grow min-w-48 print:w-max"
 			>
-				<h2 class="text-4xl print:text-2xl">Profile</h2>
+				<h2 class="text-4xl print:text-xl">Profile</h2>
 				<p class="my-3">{bio}</p>
 			</div>
 			<div
 				id="career"
-				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 basis-1/3 min-w-fit grow print:min-w-96"
+				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 print:border basis-1/3 min-w-fit grow print:min-w-96"
 			>
-				<h2 class="text-4xl print:text-2xl">Career Summary</h2>
+				<h2 class="text-4xl print:text-xl">Career Summary</h2>
 				<ul class="my-3">
 					{#each experienceView as job}
 						<li class="my-3">
-							<p class="text-xl print:text-md">{job.position}</p>
-							<p class="italic">
-								{job.company} | {job.start.toLocaleDateString()}
-								to {job.end?.toLocaleDateString() ?? 'present'}
-							</p>
+							<p class="text-2xl print:text-sm">{job.position}</p>
+							<div class="flex">
+								<p class="grow">
+									{job.company} 
+								</p>
+								<p class="italic">
+									{formatDate(job.start, 'mmm YYYY')}
+									to {formatDate(job.end, 'mmm YYYY') ?? 'Present'}
+								</p>
+							</div>
 							<ul class="list-disc list-inside my-1">
 								{#each job.achievments as ach}
 									<li>
@@ -198,9 +242,9 @@
 			</div>
 			<div
 				id="skill"
-				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 basis-1/6 grow print:min-w-48"
+				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 print:border basis-1/6 shrink min-w-64"
 			>
-				<h2 class="text-4xl print:text-2xl">Skills</h2>
+				<h2 class="text-4xl print:text-xl">Skills</h2>
 				<div class="my-3">
 					{#each skillsView as skill}
 						<Tag text={skill} />
@@ -209,10 +253,10 @@
 			</div>
 			<div
 				id="education"
-				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 basis-1/4 min-w-fit grow print:min-w-10"
+				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 print:border basis-1/4 min-w-fit grow print:min-w-10"
 			>
-				<h2 class="text-4xl mb-3 print:text-2xl">Education</h2>
-				<h4 class="text-2xl print:text-lg my-2">Degree</h4>
+				<h2 class="text-4xl mb-3 print:text-xl">Education</h2>
+				<h4 class="text-2xl print:text-md my-2">Degree</h4>
 				<ul class="my-2">
 					{#each degreeView as degree}
 						<li>
@@ -221,7 +265,7 @@
 						</li>
 					{/each}
 				</ul>
-				<h4 class="text-2xl print:text-lg">Certifications</h4>
+				<h4 class="text-2xl print:text-md">Certifications</h4>
 				<ul class="my-2">
 					{#each certView as cert}
 						<li>
@@ -232,13 +276,13 @@
 			</div>
 			<div
 				id="projects"
-				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 basis-1/3 min-w-fit grow print:min-w-5"
+				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 print:border basis-1/3 min-w-fit grow print:min-w-5"
 			>
-				<h2 class="text-4xl print:text-2xl">Projects</h2>
+				<h2 class="text-4xl print:text-xl">Projects</h2>
 				<ul class="my-3">
 					{#each projectView as project}
 						<li class="my-3">
-							<p class="text-xl print:text-base">{project.name}</p>
+							<p class="text-2xl print:text-sm">{project.name}</p>
 							<ul>
 								{#each project.highlights as highlight}
 									<li>
@@ -252,13 +296,13 @@
 			</div>
 			<div
 				id="reference"
-				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 basis-1/4 min-w-fit shrink grow print:hidden"
+				class="col-sm p-3 m-2 rounded-2xl border-gray border-solid border-2 print:border basis-1/4 min-w-fit shrink grow hidden"
 			>
-				<h2 class="text-4xl print:text-2xl">References</h2>
+				<h2 class="text-4xl print:text-xl">References</h2>
 				<ul class="my-3">
 					{#each referenceView as ref}
 						<li class="my-2">
-							<p class="text-xl print:text-base">{ref.name}</p>
+							<p class="text-xl print:text-sm">{ref.name}</p>
 							<p class="italic">{ref.email}</p>
 							<p>{ref.title}, {ref.company}</p>
 						</li>

@@ -5,6 +5,19 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   darkMode: 'class',
   theme: {
+    fontSize: {
+      '2xs': '0.675rem',
+      xs: '0.75rem',
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+      '6xl': '3.75rem'
+    },
     extend: {
       minWidth: {
         '10': '2.5rem',
@@ -12,7 +25,9 @@ export default {
         '16': '4rem',
         '20': '5rem',
         '24': '6rem',
-        '48': '12rem'
+        '48': '12rem',
+        '64': '16rem',
+        '96': '24rem'
       }
     },
     screens: {
