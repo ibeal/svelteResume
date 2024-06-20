@@ -227,7 +227,7 @@
 								</p>
 								<p class="italic">
 									{formatDate(job.start, 'mmm YYYY')}
-									to {formatDate(job.end, 'mmm YYYY') ?? 'Present'}
+									- {formatDate(job.end, 'mmm YYYY') ?? 'Present'}
 								</p>
 							</div>
 							<ul class="list-disc list-inside my-1">
