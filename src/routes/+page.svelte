@@ -53,7 +53,7 @@
 	// setup views of the data
 	let bio = data.bio;
 	let experienceView = data.experience
-		.sort((a, b) => b.start.valueOf() - a.start.valueOf())
+		.sort((a, b) => new Date(b.start).valueOf() - new Date(a.start).valueOf())
 		.slice(0, 3);
 	let skillsView = data.skills.slice(0, 14);
 	let projectView = data.projects.slice(0, 3);
@@ -97,15 +97,16 @@
 		12: 'Dec.'
 	};
 	/**
-	 * @param {Date|Undefined} date
+	 * @param {string|Undefined} date
 	 * @param {string} format
 	 */
 	function formatDate(date, format='localDate') {
-		if (date == undefined) return date
+		if (date == undefined || date === "") return undefined
+		let convertedDate = new Date(date);
 		switch(format) {
-			case 'localDate': return date.toLocaleDateString();
-			case 'M/YYYY': return `${date.getMonth()}/${date.getFullYear()}`;
-			case 'mmm YYYY': return `${months[date.getMonth()]} ${date.getFullYear()}`
+			case 'localDate': return convertedDate.toLocaleDateString();
+			case 'M/YYYY': return `${convertedDate.getMonth()}/${convertedDate.getFullYear()}`;
+			case 'mmm YYYY': return `${months[convertedDate.getMonth()]} ${convertedDate.getFullYear()}`
 		}
 	}
 </script>
