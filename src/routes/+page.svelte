@@ -1,11 +1,11 @@
 <script>
-	import { base } from '$app/paths';
+	import { base } from '$app/paths'
 	import { darkTheme } from '$lib/index';
 	import Tag from '$lib/tag.svelte';
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import { data } from '$lib/data';
 
-	let linkedinLogoPath = base + '/In-Blue-21.png';
+	const linkedinLogoPath = base + '/In-Blue-21.png';
 
 	let isDarkMode = false;
 	darkTheme.subscribe((val) => {
