@@ -1,5 +1,5 @@
 {
-    "bio": "After discovering automation, projects I've created are still in use. Creative, outside the-box solutions, with a careful look at the end goal, meet and exceed company needs.",
+    "bio": "Software engineer passionate about automation and building efficient, scalable systems. Dedicated to continuous learning and leveraging technology to drive meaningful impact. I thrive on solving complex challenges through thoughtful design and collaboration, always striving to create solutions that stand the test of time.",
     "experience": [
         {
             "company": "Church of Jesus Christ of Latter Day Saints",
@@ -8,9 +8,9 @@
             "end": "1 Dec 2020",
             "duties": [],
             "achievments": [
-                "Created automated tests that covered 40 hrs of manual testing each week",
-                "Wrote the team's first automated UI tests that reported results to Jira board",
-                "Maintained documentation on the automated test suite"
+                "Built an end-to-end Cypress testing suite, structured for easy extensibility, enabling a busy QA lead to gradually add tests. Replaced 40 hours of manual testing weekly, laying the foundation for scalable and reliable QA processes.",
+                "Integrated tests with Jira for real-time reporting, visible to the whole team. The suite caught critical bugs in multiple releases, ensuring smoother deployments.",
+                "Documented the automated test suite comprehensively, enabling seamless updates and ensuring future scalability of the QA framework."
             ]
         },
         {
@@ -20,9 +20,11 @@
             "end": "",
             "duties": [],
             "achievments": [
-                "Migrated the entire codebase from .NET Framework 4.8 to .NET 8",
-                "Moved 350 production databases with only a 2 hour outage period",
-                "Designed and implemented the entire CI/CD pipeline, saving 12 developer hours a week"
+                "Led development of a key product for our IBM department, integrating with client SAM tools to automate software installation data retrieval and classification. Streamlined licensing workflows to enhance accuracy and ensure enterprise compliance.",
+                "Spearheaded migration of codebase from .NET Framework 4.8 to .NET 8 by identifying and decoupling incompatible libraries, adopting dependency inversion patterns, and performing extensive regression testing to ensure stable releases.",
+                "Designed and implemented a .NET Framework backend solution to process large log file batches, automating millions of entries from zip uploads (30-100 files, up to 20MB each). Collaborated with the client to gather requirements and deliver the feature within 6 months of my tenure, streamlining log analysis and resolving Excel limitations.",
+                "Enhanced deployment velocity from 2 deploys per month to 3 per week by designing an Azure DevOps CI/CD pipeline and integrating Launch Darkly feature flags, decreasing deployment risk and enabling faster feature rollouts.",
+                "Migrated 350 production databases using Azure Database Migration Service, leveraging pre-migration backups and validated dry runs to ensure a smooth transition within a 2-hour planned downtime."
             ]
         }
     ],
@@ -39,29 +41,35 @@
         "Java",
         "Cypress",
         "Jira",
-        "Bash"
+        "Bash",
+        "Github",
+        "Elixir",
+        "Postgres",
+        "LaunchDarkly"
     ],
     "projects": [
         {
-            "name": "KitchenDB",
+            "name": "Compiler",
             "highlights": [
-                "Inventory management system for recipes and kitchen supplies",
-                "Includes SQL database on backend and a custom GUI on frontend"
+                "Built a compiler in Python for a custom object-oriented programming language, translating high-level code into assembly instructions. Demonstrated proficiency in compiler design by implementing complex features like class handling, method calls, and pointers, strengthening theoretical knowledge of language processing."
             ]
         },
         {
-            "name": "Assembler/Virtual Machine",
+            "name": "Assembler",
             "highlights": [
-                "An full implementation of an Assembler and Virtual Machine, built from scratch",
-                "Translates Assembly code file into bytes and runs the created bytecode"
+                "Designed and implemented a two-pass assembler in Python to convert assembly instructions into bytecode as part of a capstone project. Focused on opcode translation, symbol resolution, and instruction parsing, reinforcing concepts in low-level programming and system architecture."
+            ]
+        },
+        {
+            "name": "Virtual Machine",
+            "highlights": [
+                "Engineered a Virtual Machine in Python to execute bytecode generated by a custom assembler. Designed a stack-based execution model and optimized memory management to simulate a runtime environment, applying core computer science concepts in practice."
             ]
         },
         {
             "name": "Resume Website",
             "highlights": [
-                "Built using Svelte and Tailwind CSS",
-                "Hosted in Azure",
-                "Setup with Github actions for automated deployment"
+                "Created a static resume website using Svelte and Tailwind CSS to showcase projects and professional achievements. Deployed on Azure for ease of access, with automated deployment pipelines configured through GitHub Actions to streamline updates and ensure consistent delivery."
             ]
         }
     ],
